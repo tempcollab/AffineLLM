@@ -2,9 +2,11 @@ import streamlit as st
 from openai import OpenAI
 
 # Show title and description.
+st.set_page_config(page_title="Multiplyr LLM Playground")
+
 st.title("Multiplyr LLM Playground")
 st.write(
-    "Chat with LLMs hosted by Multiplyr"
+    "Chat with LLMs hosted by [Multiplyr](HTTP://affinedefi.com/)"
 )
 
 # Ask user for their OpenAI API key via `st.text_input`.
@@ -43,6 +45,10 @@ else:
         top_p = st.slider("Top-P", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
         # top_k = st.slider("Top-K", min_value=1, max_value=100, value=50, step=1)
         frequency_penalty = st.slider("Frequency Penalty", min_value=-2.0, max_value=2.0, value=0.0)
+
+        # Button to clear chat
+        if st.button("Clear Chat"):
+            st.session_state.messages = []
 
     system_prompts = {
         "Default": "You are a helpful AI assistant.",
