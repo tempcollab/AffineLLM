@@ -73,7 +73,7 @@ else:
             max_tokens=output_length,
             temperature=temperature,
             # top_p=top_p,
-            top_k=int(top_k),
+            top_k=50#int(top_k),
             # frequency_penalty=frequency_penalty
         )
 
