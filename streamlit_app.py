@@ -35,11 +35,11 @@ else:
         model_choice = st.selectbox("Select Model", ["Meta Llama 3.1 BB Instruct Turbo", "Other Models..."])
         
         st.header("Parameters")
-        output_length = st.slider("Output Length", min_value=100, max_value=1000, value=512)
+        output_length = st.slider("Output Length", min_value=100, max_value=4096, value=512)
         temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
         top_p = st.slider("Top-P", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
         top_k = st.slider("Top-K", min_value=1, max_value=100, value=50)
-        repetition_penalty = st.slider("Repetition Penalty", min_value=1.0, max_value=4.0, value=1.0)
+        frequency_penalty = st.slider("Frequency Penalty", min_value=1.0, max_value=4.0, value=1.0)
 
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
@@ -74,7 +74,7 @@ else:
             temperature=temperature,
             top_p=top_p,
             top_k=top_k,
-            repetition_penalty=repetition_penalty
+            frequency_penalty=frequency_penalty
         )
 
         # Stream the response to the chat using `st.write_stream`, then store it in 
