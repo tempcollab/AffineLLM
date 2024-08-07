@@ -33,14 +33,23 @@ else:
     with st.sidebar:
         st.header("Model")
         model_choice = st.selectbox("Select Model", ["Meta-Llama-3.1-70B-Instruct"])
+
+        st.header("Modifications")
+        system_prompt = st.selectbox("System prompt", ["Default", "Customer Support Agent", "Comedian"])
         
         st.header("Parameters")
         output_length = st.slider("Output Length", min_value=100, max_value=4096, value=512)
         temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
         top_p = st.slider("Top-P", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
         # top_k = st.slider("Top-K", min_value=1, max_value=100, value=50, step=1)
-        frequency_penalty = st.slider("Frequency Penalty", min_value=1.0, max_value=4.0, value=1.0)
+        frequency_penalty = st.slider("Frequency Penalty", min_value=-2.0, max_value=2.0, value=0.0)
 
+    system_prompts = {
+        "Default": "You are a helpful AI assistant.",
+        "Customer Support Agent": "You are customer support agent. Answer customer questions to the best of your abilities. Be respectful, and solve the issues.",
+        "Comedian" : "You answer every prompt with a touch of humor. Be respectful, accurate but also funny."
+    }
+    
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
     if "messages" not in st.session_state:
@@ -63,9 +72,12 @@ else:
             st.markdown(prompt)
 
         # Generate a response using the OpenAI API.
+        messages = [
+            {"role": "system", "content": system_prompts[system_prompt]}
+        ]
         stream = client.chat.completions.create(
             model="neuralmagic/Meta-Llama-3.1-70B-Instruct-FP8",
-            messages=[
+            messages= messages + [
                 {"role": m["role"], "content": m["content"]}
                 for m in st.session_state.messages
             ],
