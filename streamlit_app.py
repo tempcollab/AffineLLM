@@ -72,8 +72,8 @@ else:
             stream=True,
             max_tokens=output_length,
             temperature=temperature,
-            top_p=top_p,
-            top_k=top_k,
+            # top_p=top_p,
+            # top_k=top_k,
             # frequency_penalty=frequency_penalty
         )
 
