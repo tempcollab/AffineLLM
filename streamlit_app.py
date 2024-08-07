@@ -39,7 +39,8 @@ else:
         st.header("Modifications")
         system_prompt = st.selectbox("System prompt", ["Default", "Customer Support Agent", "Comedian"])
         
-        with st.expander("# Parameters", expanded=False):
+        st.header("Parameters")
+        with st.expander("", expanded=False):
             output_length = st.slider("Output Length", min_value=100, max_value=4096, value=512)
             temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
             top_p = st.slider("Top-P", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
