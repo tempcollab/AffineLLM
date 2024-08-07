@@ -18,6 +18,18 @@ else:
     # Create an OpenAI client.
     client = OpenAI(api_key=openai_api_key, base_url="http://38.99.105.121:20186/v1")
 
+    # user message with right alignment
+    st.html(
+        """
+    <style>
+        .stChatMessage:has(.chat-user) {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+    </style>
+    """
+    )
+
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
     if "messages" not in st.session_state:
@@ -26,6 +38,7 @@ else:
     # Display the existing chat messages via `st.chat_message`.
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
+            st.html(f"<span class='chat-{message['author']}'></span>")
             st.markdown(message["content"])
 
     # Create a chat input field to allow the user to enter a message. This will display
@@ -37,18 +50,6 @@ else:
         with st.chat_message("user"):
             st.html(f"<span class='chat-user'></span>")
             st.markdown(prompt)
-
-        # user message with right alignment
-        st.html(
-            """
-        <style>
-            .stChatMessage:has(.chat-user) {
-                flex-direction: row-reverse;
-                text-align: right;
-            }
-        </style>
-        """
-        )
 
         # Generate a response using the OpenAI API.
         stream = client.chat.completions.create(
