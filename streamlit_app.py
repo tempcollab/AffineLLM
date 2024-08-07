@@ -71,10 +71,10 @@ else:
             ],
             stream=True,
             max_tokens=output_length,
-            temperature=temperature,
-            top_p=top_p,
-            top_k=top_k,
-            frequency_penalty=frequency_penalty
+            # temperature=temperature,
+            # top_p=top_p,
+            # top_k=top_k,
+            # frequency_penalty=frequency_penalty
         )
 
         # Stream the response to the chat using `st.write_stream`, then store it in 
