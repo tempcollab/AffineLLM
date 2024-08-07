@@ -35,7 +35,20 @@ else:
         # Store and display the current prompt.
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
+            st.html(f"<span class='chat-user'></span>")
             st.markdown(prompt)
+
+        # user message with right alignment
+        st.html(
+            """
+        <style>
+            .stChatMessage:has(.chat-user) {
+                flex-direction: row-reverse;
+                text-align: right;
+            }
+        </style>
+        """
+        )
 
         # Generate a response using the OpenAI API.
         stream = client.chat.completions.create(
