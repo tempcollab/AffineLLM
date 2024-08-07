@@ -39,12 +39,12 @@ else:
         st.header("Modifications")
         system_prompt = st.selectbox("System prompt", ["Default", "Customer Support Agent", "Comedian"])
         
-        st.header("Parameters")
-        output_length = st.slider("Output Length", min_value=100, max_value=4096, value=512)
-        temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
-        top_p = st.slider("Top-P", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
-        # top_k = st.slider("Top-K", min_value=1, max_value=100, value=50, step=1)
-        frequency_penalty = st.slider("Frequency Penalty", min_value=-2.0, max_value=2.0, value=0.0)
+        with st.expander("Parameters", expanded=False):
+            output_length = st.slider("Output Length", min_value=100, max_value=4096, value=512)
+            temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
+            top_p = st.slider("Top-P", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
+            # top_k = st.slider("Top-K", min_value=1, max_value=100, value=50, step=1)
+            frequency_penalty = st.slider("Frequency Penalty", min_value=-2.0, max_value=2.0, value=0.0)
 
         # Button to clear chat
         if st.button("Clear Chat"):
