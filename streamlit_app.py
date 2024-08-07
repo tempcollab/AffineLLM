@@ -4,7 +4,7 @@ from openai import OpenAI
 # Show title and description.
 st.title("Multiplyr LLM Playground")
 st.write(
-    "Chat with LLMs hosted by Multiplyr."
+    "Chat with LLMs hosted by Multiplyr"
 )
 
 # Ask user for their OpenAI API key via `st.text_input`.
@@ -32,14 +32,14 @@ else:
 
     with st.sidebar:
         st.header("Model")
-        model_choice = st.selectbox("Select Model", ["Meta Llama 3.1 BB Instruct Turbo", "Other Models..."])
+        model_choice = st.selectbox("Select Model", ["Meta-Llama-3.1-70B-Instruct"])
         
         st.header("Parameters")
         output_length = st.slider("Output Length", min_value=100, max_value=4096, value=512)
         temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
         top_p = st.slider("Top-P", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
         top_k = st.slider("Top-K", min_value=1, max_value=100, value=50)
-        frequency_penalty = st.slider("Frequency Penalty", min_value=1.0, max_value=4.0, value=1.0)
+        # frequency_penalty = st.slider("Frequency Penalty", min_value=1.0, max_value=4.0, value=1.0)
 
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
@@ -71,9 +71,9 @@ else:
             ],
             stream=True,
             max_tokens=output_length,
-            # temperature=temperature,
-            # top_p=top_p,
-            # top_k=top_k,
+            temperature=temperature,
+            top_p=top_p,
+            top_k=top_k,
             # frequency_penalty=frequency_penalty
         )
 
