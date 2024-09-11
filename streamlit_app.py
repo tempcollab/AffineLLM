@@ -18,7 +18,7 @@ if not openai_api_key:
 else:
 
     # Create an OpenAI client.
-    client = OpenAI(api_key=openai_api_key, base_url="http://38.99.105.121:20186/v1")
+    client = OpenAI(api_key=openai_api_key, base_url="http://95.31.214.240:41263/v1")
 
     # user message with right alignment
     st.html(
@@ -83,7 +83,7 @@ else:
             {"role": "system", "content": system_prompts[system_prompt]}
         ]
         stream = client.chat.completions.create(
-            model="neuralmagic/Meta-Llama-3.1-70B-Instruct-FP8",
+            model="neuralmagic/Meta-Llama-3.1-8B-Instruct-FP8",
             messages= messages + [
                 {"role": m["role"], "content": m["content"]}
                 for m in st.session_state.messages
