@@ -18,7 +18,7 @@ if not openai_api_key:
 else:
     try:
         # Create an OpenAI client.
-        client = OpenAI(api_key=openai_api_key, base_url="http://95.31.214.240:41263/v1")
+        client = OpenAI(api_key=openai_api_key, base_url="http://45.23.135.240:44041/v1")
 
         # user message with right alignment
         st.html(
