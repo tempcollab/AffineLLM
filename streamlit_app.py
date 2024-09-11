@@ -34,7 +34,7 @@ else:
 
     with st.sidebar:
         st.header("Model")
-        model_choice = st.selectbox("Select Model", ["Meta-Llama-3.1-70B-Instruct"])
+        model_choice = st.selectbox("Select Model", ["Meta-Llama-3.1-8B-Instruct"])
 
         st.header("Modifications")
         system_prompt = st.selectbox("System prompt", ["Default", "Customer Support Agent", "Comedian"])
