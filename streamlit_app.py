@@ -1,5 +1,14 @@
 import streamlit as st
-from openai import OpenAI, AuthenticationError
+import openai
+from openai import OpenAI, AuthenticationError, api_requestor
+import requests
+
+# Define a custom request session with SSL verification disabled
+session = requests.Session()
+session.verify = False  # Disable SSL verification
+
+# Monkey patch the OpenAI client's requestor to use the custom session
+api_requestor._make_session = lambda: session
 
 # Show title and description.
 st.set_page_config(page_title="Multiplyr LLM Playground")
