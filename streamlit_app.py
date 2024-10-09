@@ -2,11 +2,11 @@ import streamlit as st
 from openai import OpenAI, AuthenticationError
 
 # Show title and description.
-st.set_page_config(page_title="Multiplyr LLM Playground")
+st.set_page_config(page_title="AlpineX LLM Playground")
 
-st.title("Multiplyr LLM Playground")
+st.title("AlpineX LLM Playground")
 st.write(
-    "Chat with LLMs hosted by [Multiplyr](HTTP://affinedefi.com/)"
+    "Chat with LLMs hosted by [AlpineX](https://alpinex.ai/)"
 )
 
 # Ask user for their OpenAI API key via `st.text_input`.
@@ -14,11 +14,11 @@ st.write(
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 openai_api_key = st.text_input("API Key", type="password")
 if not openai_api_key:
-    st.info("Please add your API key to continue. Request new API keys [here](https://x.com/AffineDeFi).", icon="🗝️")
+    st.info("Please add your API key to continue. Create new API keys [here](https://app.alpinex.ai/).", icon="🗝️")
 else:
     try:
         # Create an OpenAI client.
-        client = OpenAI(api_key=openai_api_key, base_url="http://45.23.135.240:44041/v1")
+        client = OpenAI(api_key=openai_api_key, base_url="https://api.alpinex.ai/v1")
 
         # user message with right alignment
         st.html(
@@ -32,16 +32,18 @@ else:
         """
         )
 
+        model_id = "Meta-Llama-3.1-70B-Instruct
+
         with st.sidebar:
             st.header("Model")
-            model_choice = st.selectbox("Select Model", ["Meta-Llama-3.1-8B-Instruct"])
+            model_choice = st.selectbox("Select Model", [model_id])
 
             st.header("Modifications")
             system_prompt = st.selectbox("System prompt", ["Default", "Customer Support Agent", "Comedian"])
             
             st.header("Parameters")
             with st.expander("Generation parameters", expanded=False):
-                output_length = st.slider("Output Length", min_value=100, max_value=4096, value=512)
+                output_length = st.slider("Output Length", min_value=100, max_value=8192, value=512)
                 temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
                 top_p = st.slider("Top-P", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
                 # top_k = st.slider("Top-K", min_value=1, max_value=100, value=50, step=1)
@@ -83,7 +85,7 @@ else:
                 {"role": "system", "content": system_prompts[system_prompt]}
             ]
             stream = client.chat.completions.create(
-                model="neuralmagic/Meta-Llama-3.1-8B-Instruct-FP8",
+                model=f"neuralmagic/{model_id}",
                 messages= messages + [
                     {"role": m["role"], "content": m["content"]}
                     for m in st.session_state.messages
