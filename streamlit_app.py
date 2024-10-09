@@ -32,7 +32,7 @@ else:
         """
         )
 
-        model_id = "Meta-Llama-3.1-70B-Instruct
+        model_id = "Meta-Llama-3.1-70B-Instruct"
 
         with st.sidebar:
             st.header("Model")
