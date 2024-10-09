@@ -32,7 +32,7 @@ else:
         """
         )
 
-        model_id = "Meta-Llama-3.1-70B-Instruct"
+        model_id = "neuralmagic/Meta-Llama-3.1-70B-Instruct-FP8"
 
         with st.sidebar:
             st.header("Model")
@@ -85,7 +85,7 @@ else:
                 {"role": "system", "content": system_prompts[system_prompt]}
             ]
             stream = client.chat.completions.create(
-                model=f"neuralmagic/{model_id}",
+                model=model_id,
                 messages= messages + [
                     {"role": m["role"], "content": m["content"]}
                     for m in st.session_state.messages
