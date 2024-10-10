@@ -2,11 +2,11 @@ import streamlit as st
 from openai import OpenAI, AuthenticationError
 
 # Show title and description.
-st.set_page_config(page_title="Multiplyr LLM Playground")
+st.set_page_config(page_title="AlpineX LLM Playground")
 
-st.title("Multiplyr LLM Playground")
+st.title("AlpineX LLM Playground")
 st.write(
-    "Chat with LLMs hosted by [Multiplyr](HTTP://affinedefi.com/)"
+    "Chat with LLMs hosted by [AlpineX](https://alplinex.ai)"
 )
 
 # Ask user for their OpenAI API key via `st.text_input`.
@@ -14,7 +14,7 @@ st.write(
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 openai_api_key = st.text_input("API Key", type="password")
 if not openai_api_key:
-    st.info("Please add your API key to continue. Request new API keys [here](https://x.com/AffineDeFi).", icon="🗝️")
+    st.info("Please add your API key to continue. Create new API keys [here](https://app.alpinex.ai).", icon="🗝️")
 else:
     try:
         # Create an OpenAI client.
