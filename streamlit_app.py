@@ -6,7 +6,7 @@ st.set_page_config(page_title="AlpineX LLM Playground")
 
 st.title("AlpineX LLM Playground")
 st.write(
-    "Chat with LLMs hosted by [AlpineX](https://alplinex.ai)"
+    "Chat with LLMs hosted by [AlpineX](https://alpinex.ai)"
 )
 
 # Ask user for their OpenAI API key via `st.text_input`.
@@ -41,7 +41,7 @@ else:
             
             st.header("Parameters")
             with st.expander("Generation parameters", expanded=False):
-                output_length = st.slider("Output Length", min_value=100, max_value=8192, value=512)
+                output_length = st.slider("Output Length", min_value=100, max_value=4096, value=1024)
                 temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
                 top_p = st.slider("Top-P", min_value=0.0, max_value=1.0, value=0.7, step=0.05)
                 # top_k = st.slider("Top-K", min_value=1, max_value=100, value=50, step=1)
